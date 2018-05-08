@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>ArtMIND</title>
+    <meta charset="utf-8">
+    <!-- https://www.w3schools.com/Css/css_rwd_viewport.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <link rel="shortcut icon" type='image/x-icon' href="./images/artmind.ico">
+    <!-- Firebase Basic + authentication setup -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-functions.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script>
+      // Initialize Firebase
+      // PMAhack
+      var config = {
+        // ***** TO FIX: someplace more secure to store this key!  Noted 5/6/18.
+        // https://support.google.com/cloud/answer/6310037
+        // https://stackoverflow.com/questions/6113042/where-to-store-sensitive-data-in-public-rails-app
+        // https://nodejs.org/api/process.html#process_process_env
+        // # .bashrc
+        apiKey: "YOUR-KEY-GOES-HERE",
+        authDomain: "pmahack.firebaseapp.com",
+        databaseURL: "https://pmahack.firebaseio.com",
+        projectId: "pmahack",
+        storageBucket: "pmahack.appspot.com",
+        messagingSenderId: "698243644132"
+      };
+      firebase.initializeApp(config);
+      // Get a reference to the database service
+      var database = firebase.database();
+    </script>
+    <script type="text/javascript">
+      initApp = function() {
+      firebase.auth().onAuthStateChanged(
+        function(user) {
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            user.getIdToken().then(function(accessToken) {
+              // document.getElementById("sign-in-status").textContent = "Signed in";
+              // document.getElementById("sign-in").textContent = "Sign out";
+              // document.getElementById(
+              //   "account-details"
+              // ).textContent = JSON.stringify(
+              //   {
+              //     displayName: displayName,
+              //     email: email,
+              //     emailVerified: emailVerified,
+              //     phoneNumber: phoneNumber,
+              //     photoURL: photoURL,
+              //     uid: uid,
+              //     accessToken: accessToken,
+              //     providerData: providerData
+              //   },
+              //   null,
+              //   "  "
+              // );
+            });
+          } else {
+            // User is signed out.
+            // document.getElementById("sign-in-status").textContent = "Signed out";
+            // document.getElementById("sign-in").textContent = "Sign in";
+            // document.getElementById("account-details").textContent = "null";
+          }
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+    };
+    // Firebase
+    window.addEventListener("load", function() {
+      initApp();
+    });
+    </script>
+    <!-- Firebase web setup -->
+    <!-- https://firebase.google.com/docs/web/setup?authuser=0 -->
+    <!-- Leave out Storage -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-storage.js"></script> -->
+    <!-- Leave out Storage -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-storage.js"></script> -->
+  </head>
+  <body>
+    <!-- Top -->
+    <div class="nav">
+      <div class="navcol1">
+        <a href="./index.html"><img class="ht46" src="./images/artmind.png" alt="ArtMIND logo"></a>
+      </div>
+      <div class="navcol2">
+        <!-- <img class="ht46" src="./images/help.png" alt="help icon"> -->
+        <button class="ht46 signedOut loginoutButton" type="button" name="button" id="loginButton">Login</button>
+        <button class="ht46 signedIn loginoutButton" type="button" name="button" id="logoutButton">Logout</button>
+      </div>
+    </div>
+    <span id="loginState" class="contentBlock"></span>
+    <div class="signedOut">
+      <!-- <h2>Welcome to ArtMIND.</h2> -->
+      <p>Log in to discover what the
+      Philadelphia Museum of Art collection has for you.</p>
+    </div>
+    <div class="signedIn content">
+      <div class="">
+        <p>We've selected <strong>10</strong> PMA works for you. Click the buttons below
+          to cast your vote and move to the next work. When you're done, click
+          <em>ArtMIND match</em> for your personalized recommendations.</p>
+      </div>
+      <!-- Content -->
+      <!-- <h3>Art:</h3> -->
+      <div class="artwork">
+        <!-- <hr /> -->
+        <!-- <h3>PMA masterpiece:</h3> -->
+        <img id="artwork" src="" alt="">
+        <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
+        <!-- Two Girls -->
+        <figcaption id="artworkCaption"></figcaption>
+      </div>
+      <div class="">
+        <!-- <hr /> -->
+        <!-- <h3>Mark your preference:</h3> -->
+        <p>
+          <input class="voteButton" id="downvote" type="image" title="dislike" alt="dislike" src="./images/Thumbs-Down-Picked-75px.png" />
+          <!-- <input class="voteButton voteButtonChosen" id="0vote" type="image" title="neutral" alt="neutral" src="./images/0vote.png" /> -->
+          <input class="voteButton" id="upvote" type="image" title="like" alt="like" src="./images/Thumbs-Up-Picked-75px.png" />
+        </p>
+        <!-- <p>
+          <button id="artGet_previous">Previous</button>
+          <button id="artGet_next">Next</button>
+        </p> -->
+        <div>
+          <!-- <form id="artGet_form" class="artGet" action="index.html" method="get"> -->
+            <!-- <p>
+              <label for="api_token">Please enter your token:</label>
+              <input class="artGet" type="text" id="api_token" name="api_token">
+            </p> -->
+            <!-- <p>
+              <label for="objectID">ObjectID: </label>
+              <input class="artGet" name="objectID" type="number" placeholder="59198">
+            </p>
+          </form> -->
+        </div>
+      </div>
+      <div class="">
+        <!-- <hr /> -->
+        <!-- <h3>Your choices:</h3> -->
+        <div id="votes" class="">
+
+        </div>
+        <br>
+        <p>
+          <button id="button_rec"><em>ArtMIND matches</em></button>
+        </p>
+      </div>
+    </div>
+    <div class="signedIn results">
+      <p>Here are <strong>3</strong> personalized recommendations from ArtMIND.</p>
+      <div class="artwork">
+        <img id="artwork_recommended" src="" alt="">
+        <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
+        <!-- Two Girls -->
+        <figcaption id="artworkCaption_recommended"></figcaption>
+      </div>
+      <p>
+        <!-- <button id="artGet_previous_recommended">Previous</button> -->
+        <button id="artGet_next_recommended">Next Match</button>
+      </p>
+      <p>
+        <button id="button_previousPage"><em>Back</em></button>
+      </p>
+    </div>
+    <!-- Footer -->
+    <div class="nav">
+      <div class="footer navcol1">
+        <footer class="">
+          <p>
+            <a href="./privacy_policy.html">Privacy Policy</a>
+            <span> | </span>
+            <a href="./terms_and_conditions.html">Terms and Conditions</a>
+          </p>
+        </footer>
+      </div>
+      <div class="footer navcol2">
+      </div>
+    </div>
+    <!-- <div class="signedIn authentication content">
+      <hr /> -->
+      <!-- Similar function here?  https://github.com/firebase/quickstart-js/blob/01b7bc53e43b98acb6a32769ffa381d7223ddf07/auth/email-password.html#L157-L189 -->
+      <!-- <div id="sign-in-status"></div>
+      <div id="sign-in"></div>
+      <div id="account-details"></div>
+    </div> -->
+    <!-- <div class="signedIn authentication content">
+      <hr /> -->
+      <!-- Similar function here?  https://github.com/firebase/quickstart-js/blob/01b7bc53e43b98acb6a32769ffa381d7223ddf07/auth/email-password.html#L157-L189 -->
+      <!-- <div id="sign-in-status"></div>
+      <div id="sign-in"></div>
+      <div id="account-details"></div>
+    </div> -->
+    <!-- JQuery libraries -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- My Javascript -->
+    <script src="./javascript/script.js"></script>
+  </body>
+</html>

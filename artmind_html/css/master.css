@@ -1,0 +1,154 @@
+/* ArtMind CSS */
+
+* {
+  /* https://www.w3schools.com/Css/css_rwd_grid.asp */
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  background-color: #FFF;
+  font-family: 'Lato', sans-serif;
+  width: 650px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: darkblue;
+  margin: 15px;
+}
+
+h3,
+#votes {
+  color: #222;
+}
+
+/* .signedOut {
+  display: visible;
+}
+
+.signedIn {
+  display: none;
+}
+
+.results {
+  display: none;
+} */
+
+.artwork {
+  /* vertical-align: middle; */
+  height: 300px;
+}
+
+/* https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container */
+#artwork, #artwork_recommended {
+  align-content: center;
+  vertical-align: middle;
+  display: inline-flex;
+  /* display: flex; */
+  align-items:center;
+  max-width:100%;
+  max-height:75%;
+}
+
+#artworkCaption, #artworkCaption_recommended {
+  font-size: 0.75em;
+}
+
+.ht46 {
+  height: 46px;
+}
+
+.voteButton {
+  background-color: transparent;
+  height: 64px;
+  outline: 1px solid black;
+}
+
+.voteButton:hover {
+  outline: 3px solid black;
+}
+
+.voteButtonChosen {
+  /* outline: 4px solid blue; */
+}
+
+button {
+  font-size: 1em;
+  background-color: darkblue;
+  color: white;
+  margin: 0px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #3c75f6;
+}
+
+.loginoutButton {
+  float: right;
+}
+
+footer {
+  font-size: 10px;
+  color: #222;
+}
+
+#loginState {
+  text-align: right;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.navcol1 {
+  text-align: left;
+  width: 70%;
+  height: 50px;
+  float: left;
+  padding: 0 20px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-color: gray;
+  border-bottom-style: solid;
+  border-width: thin;
+}
+
+.navcol2 {
+  text-align: right;
+  width: 30%;
+  height: 50px;
+  float: left;
+  padding: 0 20px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-color: gray;
+  border-bottom-style: solid;
+  border-width: thin;
+}
+
+.footer {
+  border-color: gray;
+  border-top-style: solid;
+  border-bottom-style: none;
+  border-width: thin;
+}
+
+@media only screen and (max-width: 650px) {
+  /* For mobile phones: */
+  body {
+    width: 98%;
+  }
+  .artwork {
+    height: 300px;
+    /* height: auto; */
+    width: 100%;
+  }
+  /* button {
+    font-size: 1.5em;
+  } */
+  /* button {
+    font-size: 30px;
+  } */
+}
