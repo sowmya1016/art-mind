@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Sign-in to artmind</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/master.css">
+    <link rel="shortcut icon" type='image/x-icon' href="./images/artmind.ico">
+    <!-- https://console.firebase.google.com/project/artmind-5617f/authentication/providers -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      // PMAhack
+      var config = {
+        apiKey: "YOUR-KEY-GOES-HERE",
+        authDomain: "pmahack.firebaseapp.com",
+        databaseURL: "https://pmahack.firebaseio.com",
+        projectId: "pmahack",
+        storageBucket: "pmahack.appspot.com",
+        messagingSenderId: "698243644132"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <!-- https://github.com/firebase/firebaseui-web -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
+    <script type="text/javascript">
+    // FirebaseUI config.
+    // https://firebase.google.com/docs/auth/web/firebaseui
+    var uiConfig = {
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // User successfully signed in.
+          // Return type determines whether we continue the redirect automatically
+          // or whether we leave that to developer to handle.
+          return true;
+        },
+        uiShown: function() {
+          // The widget is rendered.
+          // Hide the loader.
+          document.getElementById('loader').style.display = 'none';
+        }
+      },
+
+      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+      signInFlow: 'popup',
+      signInSuccessUrl: "index.html",
+
+      // Add something here to turn off account chooser?
+            // credentialHelper: firebaseui.auth.CredentialHelper.NONE, // Hal added this
+            // https://stackoverflow.com/questions/37369929/disable-accountchooser-for-firebase-auth#42400245
+            // https://github.com/firebase/FirebaseUI-Web
+            //Start it here
+            // credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+            //End it here
+            // signInFlow: 'popup',
+            credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+            // signInSuccessUrl: '<url-to-redirect-to-on-success>',
+
+      signInOptions: [
+        // Leave the lines as is for the providers you want to offer your users.
+        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+      ],
+      // Terms of service url.
+      tosUrl: "terms_and_conditions.html"
+    };
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    // The start method will wait until the DOM is loaded.
+    ui.start("#firebaseui-auth-container", uiConfig);
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  </head>
+  <body>
+    <div class="nav">
+      <div class="navcol1">
+        <a href="index.html"><img class="ht95" src="./images/artmind.png" alt="ArtMIND logo"></a>
+      </div>
+      <div class="navcol2">
+        <!-- <img class="ht46" src="./images/help.png" alt="help icon"> -->
+      </div>
+    </div>
+    <div class="content">
+      <!-- <p>Content goes here.</p> -->
+    </div>
+    <div id="firebaseui-auth-container"></div>
+    <div class="nav">
+      <div class="footer navcol1">
+        <footer class="content">
+          <p>
+            <a href="./privacy_policy.html">Privacy Policy</a>
+            <span> | </span>
+            <a href="./terms_and_conditions.html">Terms and Conditions</a>
+          </p>
+        </footer>
+      </div>
+      <div class="footer navcol2">
+      </div>
+    </div>
+  </body>
+  <!-- JQuery and JQueryUI -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+</html>
