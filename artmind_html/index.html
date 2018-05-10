@@ -27,7 +27,7 @@
         // https://stackoverflow.com/questions/6113042/where-to-store-sensitive-data-in-public-rails-app
         // https://nodejs.org/api/process.html#process_process_env
         // # .bashrc
-        apiKey: "YOUR-KEY-GOES-HERE",
+        apiKey: "YOUR_KEY_HERE",
         authDomain: "pmahack.firebaseapp.com",
         databaseURL: "https://pmahack.firebaseio.com",
         projectId: "pmahack",
@@ -110,24 +110,38 @@
     <span id="loginState" class="contentBlock"></span>
     <div class="signedOut">
       <!-- <h2>Welcome to ArtMIND.</h2> -->
-      <p>Log in to discover what the
-      Philadelphia Museum of Art collection has for you.</p>
+      <!-- <p>Log in to discover what the
+      Philadelphia Museum of Art collection has for you.</p> -->
+      <p>Hi, I'm <strong>ArtMIND</strong>.</p>
+      <p>I'm here to help you find artworks that will inspire and engage you, based on your preferences.</p>
+      <p>The Philadelphia Museum of Art has a world-renowned collection, and I'm
+      sure we can work together to help you discover what the collection has for
+      you.</p>
+      <a href="http://www.philamuseum.org/collections/permanent/42515.html" target="_blank"><img id="homepageImage" src="./images/1929-184-34after-CX.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916"></a>
     </div>
     <div class="signedIn content">
       <div class="">
-        <p>We've selected <strong>10</strong> PMA works for you. Click the buttons below
+        <p>I’ve selected <strong>10</strong> artworks from the Philadelphia Museum of Art
+        galleries for you. Let me know what you like and don’t like, and I’ll
+        give you some personalized recommendations.</p>
+        <!-- <p>We’ve selected <strong>10</strong> artworks from the Philadelphia Museum of Art
+        galleries for you. Let us know which ones you like and don’t like, and we'll
+        deliver <strong>3</strong> personalized recommendations.</p> -->
+        <!-- <p>We've selected <strong>10</strong> PMA works for you. Click the buttons below
           to cast your vote and move to the next work. When you're done, click
-          <em>ArtMIND match</em> for your personalized recommendations.</p>
+          <em>ArtMIND match</em> for your personalized recommendations.</p> -->
       </div>
       <!-- Content -->
       <!-- <h3>Art:</h3> -->
       <div class="artwork">
         <!-- <hr /> -->
         <!-- <h3>PMA masterpiece:</h3> -->
+        <!-- <span class="middleize"></span> -->
         <img id="artwork" src="" alt="">
         <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
         <!-- Two Girls -->
-        <figcaption id="artworkCaption"></figcaption>
+        <!-- Show/Hide Artwork Caption -->
+        <!-- <figcaption id="artworkCaption"></figcaption> -->
       </div>
       <div class="">
         <!-- <hr /> -->
@@ -157,27 +171,45 @@
       <div class="">
         <!-- <hr /> -->
         <!-- <h3>Your choices:</h3> -->
-        <div id="votes" class="">
-
-        </div>
-        <br>
-        <p>
-          <button id="button_rec"><em>ArtMIND matches</em></button>
-        </p>
+        <!-- <div id="votes" class=""> -->
+          <!-- When uncommented - votes show up here in real time as people make them -->
+        <!-- </div> -->
+        <!-- <br> -->
+        <!-- <p>
+          <button id="button_rec"><em>View My Recommendations</em></button>
+        </p> -->
       </div>
     </div>
     <div class="signedIn results">
-      <p>Here are <strong>3</strong> personalized recommendations from ArtMIND.</p>
-      <div class="artwork">
+      <p>I’ve found <strong>3</strong> works I think you’ll like based on your preferences.</p>
+      <!-- <p>Here are <strong>3</strong> personalized recommendations we think
+      you’ll like based on your preferences.</p> -->
+      <!-- <div class="artwork">
         <img id="artwork_recommended" src="" alt="">
-        <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
-        <!-- Two Girls -->
         <figcaption id="artworkCaption_recommended"></figcaption>
+      </div> -->
+
+      <div class="artwork2">
+        <img id="artwork_recommended1" src="" alt="">
+        <figcaption id="artworkCaption_recommended1_title"></figcaption>
+        <figcaption id="artworkCaption_recommended1"></figcaption>
       </div>
-      <p>
+      <br>
+      <div class="artwork2">
+        <img id="artwork_recommended2" src="" alt="">
+        <figcaption id="artworkCaption_recommended2_title"></figcaption>
+        <figcaption id="artworkCaption_recommended2"></figcaption>
+      </div>
+      <br>
+      <div class="artwork2">
+        <img id="artwork_recommended3" src="" alt="">
+        <figcaption id="artworkCaption_recommended3_title"></figcaption>
+        <figcaption id="artworkCaption_recommended3"></figcaption>
+      </div>
+      <!-- <p> -->
         <!-- <button id="artGet_previous_recommended">Previous</button> -->
-        <button id="artGet_next_recommended">Next Match</button>
-      </p>
+        <!-- <button id="artGet_next_recommended">Next Recommendation</button> -->
+      <!-- </p> -->
       <p>
         <button id="button_previousPage"><em>Back</em></button>
       </p>
