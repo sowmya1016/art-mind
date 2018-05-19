@@ -12,7 +12,7 @@ let tempObjectID;
 let token = "MY_TOKEN";
 let objectIDs = []; // objectIDs
 let votes = []; // did you like it (1=yes, -1=no, 0=noVote)
-// let galleries = [111, 116];
+// let galleries = [155, 161];
 let galleries = [111, 116, 155, 161, 201, 204, 226, 244, 265, 283, 299];
 let objectsInGalleries = [];
 let objectIDs_recommended = [101, 102, 103];
@@ -2086,14 +2086,9 @@ $(document).ready(function() {
         method: "POST", // type of the HTTP request
         success: function(data) {
           token = jQuery.parseJSON(data);
-          console.log("PMA Token loaded");
           // Populate the page
-          arrayPop(2); // 1 for "random" or 2 for static 10
-          // var phptest = <?php echo "hello php world"; ?>;
-          // var phptest = <?php echo json_encode($my_var); ?>;
-          // alert(phptest);
-          // alert(<?php echo "hello php world" ?>);
-          // alert(<?php echo $_ENV["ARTMIND_DEV_PMA_TOKEN"]; ?>);
+          // Pass 1 for "random" or 2 for static 10
+          arrayPop(2);
         }
       });
     } else {
