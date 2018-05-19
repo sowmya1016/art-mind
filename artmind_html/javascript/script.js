@@ -2387,15 +2387,8 @@ function callPMA_getObjectsForLocation(strURI, callback) {
 
 function getURI_getObjectsForLocation(galleryID) {
   var strURI =
-    baseURI_getObjectsForLocation + popCall_getObjectsForLocation(galleryID);
+    baseURI_getObjectsForLocation + "?name=" + galleryID + "&api_token=" + token;
   return strURI;
-}
-
-function popCall_getObjectsForLocation(galleryID) {
-  // returns output like "?name=GALLERY_ID&api_token=MY_TOKEN"
-  var strText;
-  strText = "?name=" + galleryID + "&api_token=" + token;
-  return strText;
 }
 
 function getURI_getObjectInformation(indexChange, array) {
