@@ -2257,6 +2257,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementsByClassName("signedIn")[2].style.display = "none";
     document.getElementsByClassName("signedOut")[0].style.display = "visible";
     document.getElementsByClassName("signedOut")[1].style.display = "visible";
+    token = "MY_TOKEN"; // turn off PMA API token
     signedOutMessage();
   }
 });
