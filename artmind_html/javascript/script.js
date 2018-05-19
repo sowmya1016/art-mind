@@ -9,7 +9,7 @@ let tempObjectID;
 // https://support.google.com/cloud/answer/6310037
 // ARTMIND_DEV_PMA_TOKEN
 // # .bashrc
-let token = "YOUR_KEY_HERE";
+let token = "MY_TOKEN";
 let objectIDs = []; // objectIDs
 let votes = []; // did you like it (1=yes, -1=no, 0=noVote)
 // let galleries = [111, 116];
@@ -2073,12 +2073,23 @@ let myRecs = [
 
 // --- EVENT LISTENERS ---
 $(document).ready(function() {
-  arrayPop(2); // 1 for "random" or 2 for static 10
-  // var phptest = <?php echo "hello php world"; ?>;
-  // var phptest = <?php echo json_encode($my_var); ?>;
-  // alert(phptest);
-  // alert(<?php echo "hello php world" ?>);
-  // alert(<?php echo $_ENV["ARTMIND_DEV_PMA_TOKEN"]; ?>);
+  // Get my Firebase token
+  $.ajax({
+    data: { request: "postedFromArtMIND" },
+    url: "php/pma_key2.php", // your php file
+    method: "POST", // type of the HTTP request
+    success: function(data) {
+      token = jQuery.parseJSON(data);
+      console.log("PMA Token loaded");
+      // Populate the page
+      arrayPop(2); // 1 for "random" or 2 for static 10
+      // var phptest = <?php echo "hello php world"; ?>;
+      // var phptest = <?php echo json_encode($my_var); ?>;
+      // alert(phptest);
+      // alert(<?php echo "hello php world" ?>);
+      // alert(<?php echo $_ENV["ARTMIND_DEV_PMA_TOKEN"]; ?>);
+    }
+  });
 });
 
 $("#artGet_previous").click(function() {
@@ -2101,7 +2112,7 @@ function stepThroughArtworks(steps, array, recommended) {
   // Steps key:  1 == next, (arrayLength-1) == previous.
   console.log(steps);
   var strURI = getURI_getObjectInformation(steps, array);
-  console.log(strURI);
+  // console.log(strURI);
   $("#artGet_form").attr("action", strURI);
   callPMA_getObjectInformation(strURI, recommended);
   if (recommended === 0) {
@@ -2154,8 +2165,8 @@ $("#downvote").click(function() {
   $("#votes").text(votes);
   voteDisplay(-1);
   stepThroughArtworks(1, objectIDs, 0);
-  if ( objectIDs[maxIndex] === startObjectID ) {
-    getRecommendations()
+  if (objectIDs[maxIndex] === startObjectID) {
+    getRecommendations();
   }
 });
 
@@ -2174,8 +2185,8 @@ $("#upvote").click(function() {
   $("#votes").text(votes);
   voteDisplay(1);
   stepThroughArtworks(1, objectIDs, 0);
-  if ( objectIDs[maxIndex] === startObjectID ) {
-    getRecommendations()
+  if (objectIDs[maxIndex] === startObjectID) {
+    getRecommendations();
   }
 });
 
@@ -2310,7 +2321,7 @@ function arrayPop(method) {
       // for all galleries
       console.log(index + " - " + currentValue);
       strURI = getURI_getObjectsForLocation(galleries[index]);
-      console.log("strURI - " + strURI);
+      // console.log("strURI - " + strURI);
       // callPMA_getObjectsForLocation(getURI_getObjectsForLocation(currentValue)); // get objects in gallery
       // callback functions because of GetJSON API call is asynchronous
       callPMA_getObjectsForLocation(
@@ -2387,7 +2398,7 @@ function getURI_getObjectInformation(indexChange, array) {
     baseURI_getObjectInformation +
     popCall_getObjectInformation(indexChange, array);
   return strURI;
-  console.log(strURI);
+  // console.log(strURI);
 }
 
 function popCall_getObjectInformation(indexChange, array) {
@@ -2470,7 +2481,9 @@ function callPMA_getObjectInformation(strURI, recommended) {
 
       // var Thumbnail, Title, SocialTags, Classification,
       // var Style, Dated, Artist, Geography
-      $("#artworkCaption_recommended1_title").text(values[keys.indexOf("Title")]);
+      $("#artworkCaption_recommended1_title").text(
+        values[keys.indexOf("Title")]
+      );
       // $("#artworkCaption_recommended1").append("<br>");
       $("#artworkCaption_recommended1").text(values[keys.indexOf("Artist")]);
       $("#artworkCaption_recommended1").append("<br>");
@@ -2483,11 +2496,16 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended1").append("<br>");
       $("#artwork_recommended1").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
-      $("#artwork_recommended1").load(location.href + " #artwork_recommended1", "");
+      $("#artwork_recommended1").load(
+        location.href + " #artwork_recommended1",
+        ""
+      );
     } else if (recommended === 2) {
       // var Thumbnail, Title, SocialTags, Classification,
       // var Style, Dated, Artist, Geography
-      $("#artworkCaption_recommended2_title").text(values[keys.indexOf("Title")]);
+      $("#artworkCaption_recommended2_title").text(
+        values[keys.indexOf("Title")]
+      );
       // $("#artworkCaption_recommended2").append("<br>");
       $("#artworkCaption_recommended2").text(values[keys.indexOf("Artist")]);
       $("#artworkCaption_recommended2").append("<br>");
@@ -2500,11 +2518,16 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended2").append("<br>");
       $("#artwork_recommended2").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
-      $("#artwork_recommended2").load(location.href + " #artwork_recommended2", "");
+      $("#artwork_recommended2").load(
+        location.href + " #artwork_recommended2",
+        ""
+      );
     } else if (recommended === 3) {
       // var Thumbnail, Title, SocialTags, Classification,
       // var Style, Dated, Artist, Geography
-      $("#artworkCaption_recommended3_title").text(values[keys.indexOf("Title")]);
+      $("#artworkCaption_recommended3_title").text(
+        values[keys.indexOf("Title")]
+      );
       // $("#artworkCaption_recommended3").append("<br>");
       $("#artworkCaption_recommended3").text(values[keys.indexOf("Artist")]);
       $("#artworkCaption_recommended3").append("<br>");
@@ -2517,7 +2540,10 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended3").append("<br>");
       $("#artwork_recommended3").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
-      $("#artwork_recommended3").load(location.href + " #artwork_recommended3", "");
+      $("#artwork_recommended3").load(
+        location.href + " #artwork_recommended3",
+        ""
+      );
     }
   });
 }
@@ -2607,21 +2633,21 @@ function getRecommendations() {
   objectIDs.forEach(function(currentValue, index) {
     if (currentValue !== 999) {
       firebase
-      .database()
-      .ref(
-        "likes/" +
-        firebase.auth().currentUser.uid +
-        "_" +
-        currentValue +
-        "_" +
-        Date.now()
-      )
-      .set({
-        uid: firebase.auth().currentUser.uid,
-        objectid: currentValue,
-        rating: votes[index],
-        time: Date.now()
-      });
+        .database()
+        .ref(
+          "likes/" +
+            firebase.auth().currentUser.uid +
+            "_" +
+            currentValue +
+            "_" +
+            Date.now()
+        )
+        .set({
+          uid: firebase.auth().currentUser.uid,
+          objectid: currentValue,
+          rating: votes[index],
+          time: Date.now()
+        });
     }
   });
 
@@ -2640,7 +2666,7 @@ function getRecommendations() {
   // processing...
   strURI = getURI_getObjectInformation(0, objectIDs_recommended);
   console.log(objectIDs_recommended);
-  callPMA_getObjectInformation(strURI, 1);  // OK
+  callPMA_getObjectInformation(strURI, 1); // OK
   stepThroughArtworks(1, objectIDs_recommended, 2);
   stepThroughArtworks(1, objectIDs_recommended, 3);
 

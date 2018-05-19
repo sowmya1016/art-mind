@@ -18,75 +18,98 @@
     <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- JQuery libraries -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- My Javascript -->
     <script>
-      // Initialize Firebase
-      // PMAhack
-      var config = {
-        // ***** TO FIX: someplace more secure to store this key!  Noted 5/6/18.
-        // https://support.google.com/cloud/answer/6310037
-        // https://stackoverflow.com/questions/6113042/where-to-store-sensitive-data-in-public-rails-app
-        // https://nodejs.org/api/process.html#process_process_env
-        // # .bashrc
-        apiKey: "YOUR_KEY_HERE",
-        authDomain: "pmahack.firebaseapp.com",
-        databaseURL: "https://pmahack.firebaseio.com",
-        projectId: "pmahack",
-        storageBucket: "pmahack.appspot.com",
-        messagingSenderId: "698243644132"
-      };
-      firebase.initializeApp(config);
-      // Get a reference to the database service
-      var database = firebase.database();
-    </script>
-    <script type="text/javascript">
-      initApp = function() {
-      firebase.auth().onAuthStateChanged(
-        function(user) {
-          if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
-            user.getIdToken().then(function(accessToken) {
-              // document.getElementById("sign-in-status").textContent = "Signed in";
-              // document.getElementById("sign-in").textContent = "Sign out";
-              // document.getElementById(
-              //   "account-details"
-              // ).textContent = JSON.stringify(
-              //   {
-              //     displayName: displayName,
-              //     email: email,
-              //     emailVerified: emailVerified,
-              //     phoneNumber: phoneNumber,
-              //     photoURL: photoURL,
-              //     uid: uid,
-              //     accessToken: accessToken,
-              //     providerData: providerData
-              //   },
-              //   null,
-              //   "  "
-              // );
-            });
-          } else {
-            // User is signed out.
-            // document.getElementById("sign-in-status").textContent = "Signed out";
-            // document.getElementById("sign-in").textContent = "Sign in";
-            // document.getElementById("account-details").textContent = "null";
-          }
-        },
-        function(error) {
-          console.log(error);
+      // Get my Firebase token
+      $.ajax({
+        data: {request: "postedFromArtMIND"},
+        url : 'php/f_key2.php', // your php file
+        method : 'POST', // type of the HTTP request
+        success : function(data){
+          var myKey = jQuery.parseJSON(data);
+          console.log( "Firebase Key loaded" );
+          // alert(myKey);
+          mySuccess(myKey);
         }
-      );
-    };
-    // Firebase
-    window.addEventListener("load", function() {
-      initApp();
-    });
+      });
+      // Initialize Firebase
+      function mySuccess(myKey) {
+        // Initialize Firebase
+        // PMAhack
+        var config = {
+          // ***** TO FIX: someplace more secure to store this key!  Noted 5/6/18.
+          // https://support.google.com/cloud/answer/6310037
+          // https://stackoverflow.com/questions/6113042/where-to-store-sensitive-data-in-public-rails-app
+          // https://nodejs.org/api/process.html#process_process_env
+          // # .bashrc
+          apiKey: myKey,
+          authDomain: "pmahack.firebaseapp.com",
+          databaseURL: "https://pmahack.firebaseio.com",
+          projectId: "pmahack",
+          storageBucket: "pmahack.appspot.com",
+          messagingSenderId: "698243644132"
+        };
+        firebase.initializeApp(config);
+        // Get a reference to the database service
+        var database = firebase.database();
+
+        initApp = function() {
+        firebase.auth().onAuthStateChanged(
+          function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var uid = user.uid;
+              var phoneNumber = user.phoneNumber;
+              var providerData = user.providerData;
+              user.getIdToken().then(function(accessToken) {
+                // document.getElementById("sign-in-status").textContent = "Signed in";
+                // document.getElementById("sign-in").textContent = "Sign out";
+                // document.getElementById(
+                //   "account-details"
+                // ).textContent = JSON.stringify(
+                //   {
+                //     displayName: displayName,
+                //     email: email,
+                //     emailVerified: emailVerified,
+                //     phoneNumber: phoneNumber,
+                //     photoURL: photoURL,
+                //     uid: uid,
+                //     accessToken: accessToken,
+                //     providerData: providerData
+                //   },
+                //   null,
+                //   "  "
+                // );
+              });
+              } else {
+                // User is signed out.
+                // document.getElementById("sign-in-status").textContent = "Signed out";
+                // document.getElementById("sign-in").textContent = "Sign in";
+                // document.getElementById("account-details").textContent = "null";
+              }
+            },
+            function(error) {
+              console.log(error);
+            }
+          );
+        };
+
+        // Firebase
+        window.addEventListener("load", function() {
+          initApp();
+        });
+
+        $.getScript("./javascript/script.js", function() {
+          console.log("script.js loaded");
+        });
+      }
     </script>
     <!-- Firebase web setup -->
     <!-- https://firebase.google.com/docs/web/setup?authuser=0 -->
@@ -134,17 +157,17 @@
       <!-- Content -->
       <!-- <h3>Art:</h3> -->
       <div class="artwork">
-        <!-- <hr /> -->
+        <!-- <hr> -->
         <!-- <h3>PMA masterpiece:</h3> -->
         <!-- <span class="middleize"></span> -->
-        <img id="artwork" src="" alt="">
+        <img id="artwork" src="" alt="Artwork">
         <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
         <!-- Two Girls -->
         <!-- Show/Hide Artwork Caption -->
         <!-- <figcaption id="artworkCaption"></figcaption> -->
       </div>
       <div class="">
-        <!-- <hr /> -->
+        <!-- <hr> -->
         <!-- <h3>Mark your preference:</h3> -->
         <p>
           <input class="voteButton" id="downvote" type="image" title="dislike" alt="dislike" src="./images/Thumbs-Down-Picked-75px.png" />
@@ -169,7 +192,7 @@
         </div>
       </div>
       <div class="">
-        <!-- <hr /> -->
+        <!-- <hr> -->
         <!-- <h3>Your choices:</h3> -->
         <!-- <div id="votes" class=""> -->
           <!-- When uncommented - votes show up here in real time as people make them -->
@@ -185,24 +208,24 @@
       <!-- <p>Here are <strong>3</strong> personalized recommendations we think
       you’ll like based on your preferences.</p> -->
       <!-- <div class="artwork">
-        <img id="artwork_recommended" src="" alt="">
+        <img id="artwork_recommended" src="" alt="Artwork">
         <figcaption id="artworkCaption_recommended"></figcaption>
       </div> -->
 
       <div class="artwork2">
-        <img id="artwork_recommended1" src="" alt="">
+        <img id="artwork_recommended1" src="" alt="Recommended artwork #1">
         <figcaption id="artworkCaption_recommended1_title"></figcaption>
         <figcaption id="artworkCaption_recommended1"></figcaption>
       </div>
       <br>
       <div class="artwork2">
-        <img id="artwork_recommended2" src="" alt="">
+        <img id="artwork_recommended2" src="" alt="Recommended artwork #2">
         <figcaption id="artworkCaption_recommended2_title"></figcaption>
         <figcaption id="artworkCaption_recommended2"></figcaption>
       </div>
       <br>
       <div class="artwork2">
-        <img id="artwork_recommended3" src="" alt="">
+        <img id="artwork_recommended3" src="" alt="Recommended artwork #3">
         <figcaption id="artworkCaption_recommended3_title"></figcaption>
         <figcaption id="artworkCaption_recommended3"></figcaption>
       </div>
@@ -226,26 +249,26 @@
         </footer>
       </div>
       <div class="footer navcol2">
+        <footer class="">
+          <p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNvn1P3pzb2ROT9GQBlGxhUQwnXq8Go5i-VzP9ovHmJ81i6w/viewform" target="_blank">Suggestion Box</a>
+          </p>
+        </footer>
       </div>
     </div>
     <!-- <div class="signedIn authentication content">
-      <hr /> -->
+      <hr> -->
       <!-- Similar function here?  https://github.com/firebase/quickstart-js/blob/01b7bc53e43b98acb6a32769ffa381d7223ddf07/auth/email-password.html#L157-L189 -->
       <!-- <div id="sign-in-status"></div>
       <div id="sign-in"></div>
       <div id="account-details"></div>
     </div> -->
     <!-- <div class="signedIn authentication content">
-      <hr /> -->
+      <hr> -->
       <!-- Similar function here?  https://github.com/firebase/quickstart-js/blob/01b7bc53e43b98acb6a32769ffa381d7223ddf07/auth/email-password.html#L157-L189 -->
       <!-- <div id="sign-in-status"></div>
       <div id="sign-in"></div>
       <div id="account-details"></div>
     </div> -->
-    <!-- JQuery libraries -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-    <!-- My Javascript -->
-    <script src="./javascript/script.js"></script>
   </body>
 </html>
