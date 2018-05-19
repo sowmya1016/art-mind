@@ -2073,21 +2073,31 @@ let myRecs = [
 
 // --- EVENT LISTENERS ---
 $(document).ready(function() {
-  // Get my Firebase token
-  $.ajax({
-    data: { request: "postedFromArtMIND" },
-    url: "php/pma_key2.php", // your php file
-    method: "POST", // type of the HTTP request
-    success: function(data) {
-      token = jQuery.parseJSON(data);
-      console.log("PMA Token loaded");
-      // Populate the page
-      arrayPop(2); // 1 for "random" or 2 for static 10
-      // var phptest = <?php echo "hello php world"; ?>;
-      // var phptest = <?php echo json_encode($my_var); ?>;
-      // alert(phptest);
-      // alert(<?php echo "hello php world" ?>);
-      // alert(<?php echo $_ENV["ARTMIND_DEV_PMA_TOKEN"]; ?>);
+  // See if signed in
+  // Source: https://firebase.google.com/docs/auth/web/manage-users
+  // 5/19/18
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      // Get my PMA token
+      $.ajax({
+        data: { request: "postedFromArtMIND" },
+        url: "php/pma_key2.php", // your php file
+        method: "POST", // type of the HTTP request
+        success: function(data) {
+          token = jQuery.parseJSON(data);
+          console.log("PMA Token loaded");
+          // Populate the page
+          arrayPop(2); // 1 for "random" or 2 for static 10
+          // var phptest = <?php echo "hello php world"; ?>;
+          // var phptest = <?php echo json_encode($my_var); ?>;
+          // alert(phptest);
+          // alert(<?php echo "hello php world" ?>);
+          // alert(<?php echo $_ENV["ARTMIND_DEV_PMA_TOKEN"]; ?>);
+        }
+      });
+    } else {
+      // No user is signed in.
     }
   });
 });
@@ -2299,7 +2309,7 @@ function voteValue(newVote) {
 function arrayPop(method) {
   // For method #1
   let strURI;
-  let galleriesN = galleries.lengh;
+  let galleriesN = galleries.length;
   // For method #2
   let artmind10 = [
     59198,
