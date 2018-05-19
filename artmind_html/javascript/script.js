@@ -9,7 +9,6 @@ let tempObjectID;
 // https://support.google.com/cloud/answer/6310037
 // ARTMIND_DEV_PMA_TOKEN
 // # .bashrc
-let token = "MY_TOKEN";
 let objectIDs = []; // objectIDs
 let votes = []; // did you like it (1=yes, -1=no, 0=noVote)
 // let galleries = [155, 161];
@@ -2252,7 +2251,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementsByClassName("signedIn")[2].style.display = "none";
     document.getElementsByClassName("signedOut")[0].style.display = "visible";
     document.getElementsByClassName("signedOut")[1].style.display = "visible";
-    token = "MY_TOKEN"; // turn off PMA API token
     signedOutMessage();
   }
 });
@@ -2386,8 +2384,9 @@ function callPMA_getObjectsForLocation(strURI, callback) {
 }
 
 function getURI_getObjectsForLocation(galleryID) {
+  var strToken = $.parseJSON(getPMAToken());
   var strURI =
-    baseURI_getObjectsForLocation + "?name=" + galleryID + "&api_token=" + token;
+    baseURI_getObjectsForLocation + "?name=" + galleryID + "&api_token=" + strToken;
   return strURI;
 }
 
@@ -2404,10 +2403,11 @@ function popCall_getObjectInformation(indexChange, array) {
   // returns output like "?query=OBJECT_ID&api_token=MY_TOKEN"
   console.log(indexChange + " - " + array);
   var index, strText;
+  var strToken = $.parseJSON(getPMAToken());
   index = array.indexOf(Number(ObjectID));
   index += indexChange;
   index %= array.length;
-  strText = "?query=" + array[index] + "&api_token=" + token;
+  strText = "?query=" + array[index] + "&api_token=" + strToken;
   ObjectID = array[index];
   return strText;
 }
@@ -2685,4 +2685,15 @@ function arrayToString(array) {
   var strTemp = array.toString();
   strTemp = strTemp.replace(/,/g, "");
   return strTemp;
+}
+
+// https://stackoverflow.com/questions/6685249/jquery-performing-synchronous-ajax-requests#6685294
+// 5/19/18
+function getPMAToken() {
+  return $.ajax({
+    data: { request: "postedFromArtMIND" },
+    url: "php/pma_key2.php", // your php file
+    method: "POST", // type of the HTTP request
+    async: false
+  }).responseText;
 }
