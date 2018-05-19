@@ -2689,6 +2689,10 @@ function arrayToString(array) {
 
 // https://stackoverflow.com/questions/6685249/jquery-performing-synchronous-ajax-requests#6685294
 // 5/19/18
+// TODO - replace this function with asynchronous equivalents because
+// "Synchronous XMLHttpRequest on the main thread is deprecated because of its
+// detrimental effects to the end user's experience. For more help, check
+// https://xhr.spec.whatwg.org/."
 function getPMAToken() {
   return $.ajax({
     data: { request: "postedFromArtMIND" },
