@@ -2216,6 +2216,8 @@ $("#logoutButton").click(function() {
 // Set an authentication state observer and get user data
 // https://firebase.google.com/docs/auth/web/start?authuser=0
 firebase.auth().onAuthStateChanged(function(user) {
+  // TODO - update this so elements aren't merely hidden/visible but rather not
+  // loaded at all unless needed
   if (user) {
     // User is signed in.
     // Boilerplate
