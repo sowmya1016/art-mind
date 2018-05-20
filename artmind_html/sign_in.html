@@ -8,74 +8,91 @@
     <link rel="shortcut icon" type='image/x-icon' href="./images/artmind.ico">
     <!-- https://console.firebase.google.com/project/artmind-5617f/authentication/providers -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      // PMAhack
-      var config = {
-        apiKey: "YOUR_KEY_HERE",
-        authDomain: "pmahack.firebaseapp.com",
-        databaseURL: "https://pmahack.firebaseio.com",
-        projectId: "pmahack",
-        storageBucket: "pmahack.appspot.com",
-        messagingSenderId: "698243644132"
-      };
-      firebase.initializeApp(config);
-    </script>
     <!-- https://github.com/firebase/firebaseui-web -->
     <script src="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
-    <script type="text/javascript">
-    // FirebaseUI config.
-    // https://firebase.google.com/docs/auth/web/firebaseui
-    var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          // User successfully signed in.
-          // Return type determines whether we continue the redirect automatically
-          // or whether we leave that to developer to handle.
-          return true;
-        },
-        uiShown: function() {
-          // The widget is rendered.
-          // Hide the loader.
-          document.getElementById('loader').style.display = 'none';
-        }
-      },
-
-      // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-      signInFlow: 'popup',
-      signInSuccessUrl: "index.html",
-
-      // Add something here to turn off account chooser?
-            // credentialHelper: firebaseui.auth.CredentialHelper.NONE, // Hal added this
-            // https://stackoverflow.com/questions/37369929/disable-accountchooser-for-firebase-auth#42400245
-            // https://github.com/firebase/FirebaseUI-Web
-            //Start it here
-            // credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
-            //End it here
-            // signInFlow: 'popup',
-            credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-            // signInSuccessUrl: '<url-to-redirect-to-on-success>',
-
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        // firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-        // firebase.auth.PhoneAuthProvider.PROVIDER_ID
-      ],
-      // Terms of service url.
-      tosUrl: "terms_and_conditions.html"
-    };
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start("#firebaseui-auth-container", uiConfig);
-    </script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <!-- JQuery and JQueryUI -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- My Javascript -->
+    <script>
+      // Get my Firebase token
+      $.ajax({
+        data: {request: "postedFromArtMIND"},
+        url : 'php/f_key2.php', // your php file
+        method : 'POST', // type of the HTTP request
+        success : function(data){
+          var myKey = jQuery.parseJSON(data);
+          console.log( "Firebase Key loaded" );
+          // alert(myKey);
+          mySuccess(myKey);
+        }
+      });
+      // Initialize Firebase
+      function mySuccess(myKey) {
+        // Initialize Firebase
+        // PMAhack
+        var config = {
+          apiKey: myKey,
+          authDomain: "pmahack.firebaseapp.com",
+          databaseURL: "https://pmahack.firebaseio.com",
+          projectId: "pmahack",
+          storageBucket: "pmahack.appspot.com",
+          messagingSenderId: "698243644132"
+        };
+        firebase.initializeApp(config);
+        // FirebaseUI config.
+        // https://firebase.google.com/docs/auth/web/firebaseui
+        var uiConfig = {
+          callbacks: {
+            signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+              // User successfully signed in.
+              // Return type determines whether we continue the redirect automatically
+              // or whether we leave that to developer to handle.
+              return true;
+            },
+            uiShown: function() {
+              // The widget is rendered.
+              // Hide the loader.
+              // document.getElementById('loader').style.display = 'none';
+            }
+          },
+
+          // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+          signInFlow: 'popup',
+          signInSuccessUrl: "index.html",
+
+          // Add something here to turn off account chooser?
+                // credentialHelper: firebaseui.auth.CredentialHelper.NONE, // Hal added this
+                // https://stackoverflow.com/questions/37369929/disable-accountchooser-for-firebase-auth#42400245
+                // https://github.com/firebase/FirebaseUI-Web
+                //Start it here
+                // credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+                //End it here
+                // signInFlow: 'popup',
+                credentialHelper: firebaseui.auth.CredentialHelper.NONE,
+                // signInSuccessUrl: '<url-to-redirect-to-on-success>',
+
+          signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            // firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID
+            // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+          ],
+          // Terms of service url.
+          tosUrl: "terms_and_conditions.html"
+        };
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start("#firebaseui-auth-container", uiConfig);
+      }
+    </script>
   </head>
   <body>
     <div class="nav">
@@ -101,11 +118,12 @@
         </footer>
       </div>
       <div class="footer navcol2">
+        <footer class="">
+          <p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNvn1P3pzb2ROT9GQBlGxhUQwnXq8Go5i-VzP9ovHmJ81i6w/viewform" target="_blank">Suggestion Box</a>
+          </p>
+        </footer>
       </div>
     </div>
   </body>
-  <!-- JQuery and JQueryUI -->
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
 </html>
