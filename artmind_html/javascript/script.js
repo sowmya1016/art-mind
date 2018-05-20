@@ -2439,6 +2439,23 @@ function callPMA_getObjectInformation(strURI, recommended) {
       }
     });
 
+    // TODO - update this to parse out a number of 2-4 digits from the right
+    // side of the string. The current setup assumes all galleries are 3 digits
+    // in length
+    var galleryNo = loc.GalleryShort.substr(loc.GalleryShort.length - 3);
+
+    var floorNo;
+    if ( loc.Gallery.search("first floor") > 0 ) {
+      floorNo = 1;
+    } else if ( loc.Gallery.search("second floor") > 0 ) {
+      floorNo = 2;
+    } else {
+      floorNo = "error";
+    }
+
+    var mapURI = "https://www.philamuseum.org/floorplan/?galleryID=";
+    mapURI = mapURI + galleryNo + "&mf=floor" + floorNo;
+
     if (recommended === 0) {
       // var Thumbnail, Title, SocialTags, Classification,
       // var Style, Dated, Artist, Geography
@@ -2450,6 +2467,9 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption").append("<br>");
       $("#artworkCaption").append("@ ");
       $("#artworkCaption").append(loc.Gallery);
+      $("#artworkCaption").append("<br>");
+      $("#artworkCaption").append("<a href=\"" + mapURI + "\" target=\"_blank\">open map in new window</a>");
+      // $("#artworkCaption").append(mapURI);
       // console.log(loc.Gallery);
       // console.log(values[keys.indexOf("Location")]);
       // console.log(items);
@@ -2495,6 +2515,9 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended1").append("@ ");
       $("#artworkCaption_recommended1").append(loc.Gallery);
       $("#artworkCaption_recommended1").append("<br>");
+      $("#artworkCaption_recommended1").append("<a href=\"" + mapURI + "\" target=\"_blank\">open map in new window</a>");
+      // $("#artworkCaption_recommended1").append(mapURI);
+      $("#artworkCaption_recommended1").append("<br>");
       $("#artwork_recommended1").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
       $("#artwork_recommended1").load(
@@ -2517,6 +2540,9 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended2").append("@ ");
       $("#artworkCaption_recommended2").append(loc.Gallery);
       $("#artworkCaption_recommended2").append("<br>");
+      $("#artworkCaption_recommended2").append("<a href=\"" + mapURI + "\" target=\"_blank\">open map in new window</a>");
+      // $("#artworkCaption_recommended2").append(mapURI);
+      $("#artworkCaption_recommended2").append("<br>");
       $("#artwork_recommended2").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
       $("#artwork_recommended2").load(
@@ -2538,6 +2564,9 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption_recommended3").append("<br>");
       $("#artworkCaption_recommended3").append("@ ");
       $("#artworkCaption_recommended3").append(loc.Gallery);
+      $("#artworkCaption_recommended3").append("<br>");
+      $("#artworkCaption_recommended3").append("<a href=\"" + mapURI + "\" target=\"_blank\">open map in new window</a>");
+      // $("#artworkCaption_recommended3").append(mapURI);
       $("#artworkCaption_recommended3").append("<br>");
       $("#artwork_recommended3").attr("src", values[keys.indexOf("Thumbnail")]);
       // https://api.jquery.com/load/
