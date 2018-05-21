@@ -5,10 +5,6 @@ const baseURI_getObjectsForLocation =
   "https://hackathon.philamuseum.org/api/v0/collection/object/location/";
 let ObjectID = "59198"; // Prometheus Bound: 104468
 let tempObjectID;
-// ***** TO FIX: someplace more secure to store this key!  Noted 5/6/18.
-// https://support.google.com/cloud/answer/6310037
-// ARTMIND_DEV_PMA_TOKEN
-// # .bashrc
 let objectIDs = []; // objectIDs
 let votes = []; // did you like it (1=yes, -1=no, 0=noVote)
 // let galleries = [155, 161];
@@ -2221,7 +2217,12 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     // Boilerplate
-    var displayName = user.displayName;
+    var displayName;
+    if ( user.displayName !== null && user.displayName !== undefined) {
+      displayName = user.displayName;
+    } else {
+      displayName = "Guest";
+    }
     var email = user.email;
     var emailVerified = user.emailVerified;
     var photoURL = user.photoURL;
@@ -2239,7 +2240,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementsByClassName("signedIn")[2].style.display = "none";
     document.getElementsByClassName("signedOut")[0].style.display = "none";
     document.getElementsByClassName("signedOut")[1].style.display = "none";
-    signedInMessage(user.email);
+    signedInMessage(displayName);
   } else {
     // User is signed out.
     // ...

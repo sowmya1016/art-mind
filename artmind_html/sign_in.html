@@ -82,7 +82,8 @@
             // firebase.auth.GithubAuthProvider.PROVIDER_ID,
             // firebase.auth.EmailAuthProvider.PROVIDER_ID,
             firebase.auth.EmailAuthProvider.PROVIDER_ID
-            // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+            // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+            // firebase.auth.FirebaseAuthProvider.PROVIDER_ID
           ],
           // Terms of service url.
           tosUrl: "terms_and_conditions.html"
@@ -103,10 +104,12 @@
         <!-- <img class="ht46" src="./images/help.png" alt="help icon"> -->
       </div>
     </div>
+    <div id="firebaseui-auth-container"></div>
     <div class="content">
       <!-- <p>Content goes here.</p> -->
+      <p>or</p>
+      <button type="button" name="loginAnonymouslyButton" id="loginAnonymouslyButton">Login as Guest</button>
     </div>
-    <div id="firebaseui-auth-container"></div>
     <div class="nav">
       <div class="footer navcol1">
         <footer class="content">
@@ -125,5 +128,6 @@
         </footer>
       </div>
     </div>
+    <script type="text/javascript" src="javascript/sign_in.js"></script>
   </body>
 </html>
