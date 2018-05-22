@@ -84,9 +84,9 @@ h3,
   width: auto;
   height: auto;
   max-width:100%;
-  max-height:50px;
+  max-height:80px;
   font-weight: bold;
-  font-size: 1em;
+  font-size: .95em;
 }
 
 .artworkCaption {
