@@ -65,11 +65,10 @@ h3,
 } */
 
 /* https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container */
-#artwork_recommended, #artwork_recommended1, #artwork_recommended2, #artwork_recommended3 {
+.artwork_recommended {
   align-content: center;
   vertical-align: middle;
   display: inline-flex;
-  /* display: flex; */
   align-items:center;
   width: auto;
   height: auto;
@@ -77,26 +76,25 @@ h3,
   max-height:300px;
 }
 
-/* https://stackoverflow.com/questions/3029422/how-do-i-auto-resize-an-image-to-fit-a-div-container */
-#artwork_recommended1_title, #artwork_recommended2_title, #artwork_recommended3_title {
+.artwork_recommended_title {
   align-content: center;
   vertical-align: middle;
-  display: inline-flex;
-  /* display: flex; */
+  display: block;
   align-items:center;
   width: auto;
   height: auto;
   max-width:100%;
-  max-height:20px;
+  max-height:50px;
   font-weight: bold;
   font-size: 1em;
 }
 
-#artworkCaption, #artworkCaption_recommended, #artworkCaption_recommended1, #artworkCaption_recommended2, #artworkCaption_recommended3 {
+.artworkCaption {
   width: auto;
   height: auto;
+  display: inline-block;
   max-width:100%;
-  max-height:130px;
+  max-height:150px;
   font-size: 0.75em;
 }
 
