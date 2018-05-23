@@ -3280,11 +3280,11 @@ function stepThroughArtworks(steps, array, recommended) {
 }
 
 // $("body").on("mousemove mouseover mouseenter", "#downvote", function() {
-//   $("#downvote").attr("src", "./images/Thumbs-Down-Picked-75px_chosen.png");
+//   $("#downvote").attr("src", "./images/Thumbs-Down-160-selected.png");
 // });
 //
 // $("body").on("mouseup mouseleave dragstart", "#downvote", function() {
-//   $("#downvote").attr("src", "./images/Thumbs-Down-Picked-75px.png");
+//   $("#downvote").attr("src", "./images/Thumbs-Down-160.png");
 // });
 //
 // $("body").on("mousemove mouseover mouseenter", "#0vote", function() {
@@ -3296,11 +3296,11 @@ function stepThroughArtworks(steps, array, recommended) {
 // });
 //
 // $("body").on("mousemove mouseover mouseenter", "#upvote", function() {
-//   $("#upvote").attr("src", "./images/Thumbs-Up-Picked-75px_chosen.png");
+//   $("#upvote").attr("src", "./images/Thumbs-Up-160-Selected.png");
 // });
 //
 // $("body").on("mouseup mouseleave dragstart", "#upvote", function() {
-//   $("#upvote").attr("src", "./images/Thumbs-Up-Picked-75px.png");
+//   $("#upvote").attr("src", "./images/Thumbs-Up-160.png");
 // });
 
 // Artmind Match
@@ -3427,14 +3427,14 @@ function signedInMessage(email) {
 // --- FUNCTIONS ---
 function voteDisplay(vote) {
   $(".voteButton").removeClass("voteButtonChosen");
-  $("#downvote").attr("src", "./images/Thumbs-Down-Picked-75px.png");
+  $("#downvote").attr("src", "./images/Thumbs-Down-160.png");
   $("#0vote").attr("src", "./images/0vote.png");
-  $("#upvote").attr("src", "./images/Thumbs-Up-Picked-75px.png");
+  $("#upvote").attr("src", "./images/Thumbs-Up-160.png");
   // alert($("#downvote").hasClass("voteButtonChosen"));
   switch (Number(vote)) {
     case -1:
       $("#downvote").addClass("voteButtonChosen");
-      $("#downvote").attr("src", "./images/Thumbs-Down-Picked-75px_chosen.png");
+      $("#downvote").attr("src", "./images/Thumbs-Down-160-selected.png");
       // alert("-1 chosen   " + $("#downvote").hasClass("voteButtonChosen"));
       break;
     case 0:
@@ -3443,7 +3443,7 @@ function voteDisplay(vote) {
       break;
     case 1:
       $("#upvote").addClass("voteButtonChosen");
-      $("#upvote").attr("src", "./images/Thumbs-Up-Picked-75px_chosen.png");
+      $("#upvote").attr("src", "./images/Thumbs-Up-160-Selected.png");
       break;
     default:
       $("#0vote").addClass("voteButtonChosen");
