@@ -12,6 +12,42 @@ let galleries = [111, 116, 155, 161, 201, 204, 226, 244, 265, 283, 299];
 let objectsInGalleries = [];
 let objectIDs_recommended = [101, 102, 103];
 
+// Animals in Artworks
+// These works depict animals in various settings, cultures and time periods.  Some animals are domesticated and personal, others are fantastical or decorative.
+let objectIDs_curated_animals = [
+  47809,
+  48675,
+  102943,
+  59200,
+  104512,
+  57411,
+  101795,
+  102977,
+  49411,
+  49497,
+  48911,
+  260947,
+  168506
+];
+
+// Household Objects
+// Containers, cabinets and lights of all kinds have inspired artists around the word and resulted in objects of great beauty and value.
+let objectIDs_curated_householdObjects = [
+  219112,
+  119715,
+  260935,
+  168504,
+  54250,
+  150218,
+  40067,
+  156039,
+  163962,
+  45833,
+  168203,
+  149448,
+  45815
+];
+
 let myVotes = [
   "-1-11-1-1-1-1111",
   "1-1-1111-1-1-11",
