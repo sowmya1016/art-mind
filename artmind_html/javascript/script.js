@@ -3645,7 +3645,7 @@ function artwork_recommendedPopulate(recommended, values, keys, loc) {
   $(captionID).append(loc.Gallery);
   $(captionID).append("<br>");
   $(captionID).append(
-    '<a href="' + mapURI + '" target="_blank">open map in new window</a>'
+    '<a href="' + mapURI + '" target="pmaArtMap">open map in new window</a>'
   );
   $(captionID).append("<br>");
   $(artworkID).attr("src", values[keys.indexOf("Thumbnail")]);

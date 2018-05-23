@@ -84,7 +84,7 @@ h3,
   width: auto;
   height: auto;
   max-width:100%;
-  max-height:80px;
+  max-height:100px;
   font-weight: bold;
   font-size: .95em;
 }
@@ -94,7 +94,7 @@ h3,
   height: auto;
   display: inline-block;
   max-width:100%;
-  max-height:150px;
+  max-height:180px;
   font-size: 0.75em;
 }
 
@@ -185,7 +185,7 @@ footer {
 @media only screen and (max-width: 650px) {
   /* For mobile phones: */
   body {
-    width: 98%;
+    width: 100%;
   }
   .artwork {
     height: 300px;
