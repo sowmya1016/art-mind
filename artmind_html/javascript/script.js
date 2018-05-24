@@ -3268,7 +3268,7 @@ $("#artGet_next_recommended").click(function() {
 
 function stepThroughArtworks(steps, array, recommended) {
   // Steps key:  1 == next, (arrayLength-1) == previous.
-  console.log(steps);
+  // console.log(steps);
   var strURI = getURI_getObjectInformation(steps, array);
   // console.log(strURI);
   $("#artGet_form").attr("action", strURI);
@@ -3312,7 +3312,7 @@ $("#button_previousPage").click(function() {
   $(".content").toggle();
   $(".results").toggle();
   ObjectID = tempObjectID;
-  console.log("clicked.");
+  // console.log("clicked.");
 });
 
 $("#downvote").click(function() {
@@ -3349,6 +3349,11 @@ $("#upvote").click(function() {
 });
 
 $("#loginButton").click(function() {
+  window.open("sign_in.html", "_self");
+  // Handler for .ready() called.
+});
+
+$("#getStartedButton").click(function() {
   window.open("sign_in.html", "_self");
   // Handler for .ready() called.
 });
@@ -3484,7 +3489,7 @@ function arrayPop(method) {
     // get list of all objectIDs in all selected galleries
     galleries.forEach(function(currentValue, index) {
       // for all galleries
-      console.log(index + " - " + currentValue);
+      // console.log(index + " - " + currentValue);
       strURI = getURI_getObjectsForLocation(galleries[index]);
       // console.log("strURI - " + strURI);
       // callPMA_getObjectsForLocation(getURI_getObjectsForLocation(currentValue)); // get objects in gallery
@@ -3495,21 +3500,21 @@ function arrayPop(method) {
           arrayObjectsForLocation.forEach(function(val) {
             objectsInGalleries.push(val);
           });
-          console.log(index);
+          // console.log(index);
           if (index === 10) {
             // last time through, do my processing
-            console.log(index + " - " + arrayObjectsForLocation);
-            console.log(objectsInGalleries);
-            console.log(objectsInGalleries.length);
+            // console.log(index + " - " + arrayObjectsForLocation);
+            // console.log(objectsInGalleries);
+            // console.log(objectsInGalleries.length);
             // choose 10 random index numbers in that whole list & push them to random10[]
             random10 = getRandomArray(10, 0, objectsInGalleries.length);
-            console.log(random10);
+            // console.log(random10);
             // push them to objectIDs
             random10.forEach(function(currentValue) {
               objectIDs.push(objectsInGalleries[currentValue]); // push object IDs to array objectIDs[]
               votes.push(999); // 999 means no value chosen; it is the default value
             });
-            console.log(objectIDs);
+            // console.log(objectIDs);
             docReady();
           }
         }
@@ -3556,7 +3561,7 @@ function getURI_getObjectsForLocation(galleryID) {
 }
 
 function getURI_getObjectInformation(indexChange, array) {
-  console.log(indexChange + " - " + array);
+  // console.log(indexChange + " - " + array);
   var strURI =
     baseURI_getObjectInformation +
     popCall_getObjectInformation(indexChange, array);
@@ -3566,7 +3571,7 @@ function getURI_getObjectInformation(indexChange, array) {
 
 function popCall_getObjectInformation(indexChange, array) {
   // returns output like "?query=OBJECT_ID&api_token=MY_TOKEN"
-  console.log(indexChange + " - " + array);
+  // console.log(indexChange + " - " + array);
   var index, strText;
   var strToken = $.parseJSON(getPMAToken());
   index = array.indexOf(Number(ObjectID));
@@ -3614,7 +3619,7 @@ function callPMA_getObjectInformation(strURI, recommended) {
       $("#artworkCaption").append("@ ");
       $("#artworkCaption").append(loc.Gallery);
       $("#artworkCaption").append("<br>");
-      // $("#artworkCaption").append("<a href=\"" + mapURI + "\" target=\"_blank\">open map in new window</a>");
+      // $("#artworkCaption").append("<a href=\"" + mapURI + "\" target=\"_blank\">See on Map</a>");
       // $("#artworkCaption").append(mapURI);
       // console.log(loc.Gallery);
       // console.log(values[keys.indexOf("Location")]);
@@ -3659,6 +3664,9 @@ function artwork_recommendedPopulate(recommended, values, keys, loc) {
   var mapURI = "https://www.philamuseum.org/floorplan/?galleryID=";
   mapURI = mapURI + galleryNo + "&mf=floor" + floorNo;
 
+  var moreInfoURI = "http://www.philamuseum.org/collections/permanent/";
+  moreInfoURI = moreInfoURI + values[keys.indexOf("ObjectID")] + ".html";
+
   // Append DOM num_elements
   // TODO - fix this so these elements are added on the fly
   // $("#recommended").empty();
@@ -3681,7 +3689,10 @@ function artwork_recommendedPopulate(recommended, values, keys, loc) {
   $(captionID).append(loc.Gallery);
   $(captionID).append("<br>");
   $(captionID).append(
-    '<a href="' + mapURI + '" target="pmaArtMap">open map in new window</a>'
+    '<strong><a href="' + mapURI + '" target="pmaArtMap">See on Map</a></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+  );
+  $(captionID).append(
+    '<strong><a href="' + moreInfoURI + '" target="pmaArtMoreInfo">More Info</a></strong>'
   );
   $(captionID).append("<br>");
   $(artworkID).attr("src", values[keys.indexOf("Thumbnail")]);
@@ -3806,7 +3817,7 @@ function getRecommendations() {
   ObjectID = objectIDs_recommended[0];
   // processing...
   strURI = getURI_getObjectInformation(0, objectIDs_recommended);
-  console.log(objectIDs_recommended);
+  // console.log(objectIDs_recommended);
   callPMA_getObjectInformation(strURI, 1); // OK
   // Step through all the N recommended artworks
   for (var x = 2; x <= 10; x++) {

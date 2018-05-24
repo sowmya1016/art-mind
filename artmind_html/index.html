@@ -3,6 +3,7 @@
   <head>
     <title>ArtMIND</title>
     <meta charset="utf-8">
+    <meta name="referrer" content="origin">
     <!-- https://www.w3schools.com/Css/css_rwd_viewport.asp -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/master.css">
@@ -30,7 +31,7 @@
         method : 'POST', // type of the HTTP request
         success : function(data){
           var myKey = jQuery.parseJSON(data);
-          console.log( "Firebase Key loaded" );
+          // console.log( "Firebase Key loaded" );
           // alert(myKey);
           mySuccess(myKey);
         }
@@ -50,7 +51,8 @@
           databaseURL: "https://pmahack.firebaseio.com",
           projectId: "pmahack",
           storageBucket: "pmahack.appspot.com",
-          messagingSenderId: "698243644132"
+          messagingSenderId: "698243644132",
+          referer: "lottosim.website"
         };
         firebase.initializeApp(config);
         // Get a reference to the database service
@@ -96,7 +98,7 @@
               }
             },
             function(error) {
-              console.log(error);
+              // console.log(error);
             }
           );
         };
@@ -140,7 +142,33 @@
       <p>The Philadelphia Museum of Art has a world-renowned collection, and I'm
       sure we can work together to help you discover what the collection has for
       you.</p>
-      <a href="http://www.philamuseum.org/collections/permanent/42515.html" target="_blank"><img id="homepageImage" src="./images/1929-184-34after-CX.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916"></a>
+      <p>
+        <button class="ht46 signedOut" type="button" name="button" id="getStartedButton">Get Started</button>
+      </p>
+      <!-- <div class="artwork2">
+        <img id="homepageImage" src="./images/1929-184-34after-CX.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916">
+        <figcaption class="artwork_recommended_title">Mending the Net</figcaption>
+        <figcaption class="artworkCaption">
+          Thomas Eakins, American, 1844 - 1916<br>
+          1881<br>
+          Oil on canvas<br>
+          <a href="http://www.philamuseum.org/floorplan/?galleryID=118&mf=floor1" target="pmaArtMap">See on Map</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="http://www.philamuseum.org/collections/permanent/42515.html" target="pmaArtMoreInfo">More Info</a>
+        </figcaption>
+      </div> -->
+      <div class="artwork2">
+        <img id="homepageImage" src="./images/E1924-4-2-pma.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916">
+        <figcaption class="artwork_recommended_title">Highway of Combes-la-Ville</figcaption>
+        <figcaption class="artworkCaption">
+          Giovanni Boldini, Italian, 1842 - 1931<br>
+          1873<br>
+          Oil on canvas<br>
+          <strong><a href="http://www.philamuseum.org/floorplan/?galleryID=155&mf=floor1" target="pmaArtMap">See on Map</a></strong>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong><a href="http://www.philamuseum.org/collections/permanent/102975.html" target="pmaArtMoreInfo">More Info</a></strong>
+        </figcaption>
+      </div>
     </div>
     <div class="signedIn content">
       <div class="">
@@ -171,6 +199,7 @@
         <!-- <h3>Mark your preference:</h3> -->
         <p>
           <input class="voteButton" id="downvote" type="image" title="dislike" alt="dislike" src="./images/Thumbs-Down-160.png" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <!-- <input class="voteButton voteButtonChosen" id="0vote" type="image" title="neutral" alt="neutral" src="./images/0vote.png" /> -->
           <input class="voteButton" id="upvote" type="image" title="like" alt="like" src="./images/Thumbs-Up-160.png" />
         </p>
