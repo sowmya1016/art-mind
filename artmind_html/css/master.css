@@ -7,8 +7,8 @@
 
 body {
   text-align: center;
-  background-color: #FFF;
-  font-family: 'Lato', sans-serif;
+  background-color: #fff;
+  font-family: "Lato", sans-serif;
   width: 650px;
   margin: 0 auto;
 }
@@ -44,7 +44,7 @@ h3,
   /* vertical-align: middle; */
   height: auto;
   max-height: 500px;
-  max-width:100%;
+  max-width: 100%;
   /* padding: 1px; */
 }
 
@@ -54,9 +54,9 @@ h3,
   vertical-align: middle;
   /* display: inline-flex; */
   /* display: flex; */
-  align-items:center;
-  max-width:100%;
-  max-height:100%;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* https://stackoverflow.com/questions/7273338/how-to-vertically-align-an-image-inside-a-div#7310398 */
@@ -71,22 +71,22 @@ h3,
   align-content: center;
   vertical-align: middle;
   display: inline-flex;
-  align-items:center;
+  align-items: center;
   width: auto;
   height: auto;
-  max-width:100%;
-  max-height:300px;
+  max-width: 100%;
+  max-height: 300px;
 }
 
 .artwork_recommended_title {
   align-content: center;
   vertical-align: middle;
   display: block;
-  align-items:center;
+  align-items: center;
   width: auto;
   height: auto;
-  max-width:100%;
-  max-height:100px;
+  max-width: 100%;
+  max-height: 100px;
   font-weight: bold;
   font-size: 1.05em;
 }
@@ -95,8 +95,8 @@ h3,
   width: auto;
   height: auto;
   display: inline-block;
-  max-width:100%;
-  max-height:200px;
+  max-width: 100%;
+  max-height: 200px;
   font-size: 0.85em;
 }
 
@@ -110,8 +110,8 @@ h3,
 
 .voteButton {
   background-color: transparent;
-  height: 90px;
-  width: 90px;
+  height: 86px;
+  width: 86px;
   outline: 0px solid black;
 }
 
@@ -123,9 +123,23 @@ h3,
   /* outline: 4px solid blue; */
 }
 
+.loginoutButton,
+.getStartedButton,
+.backButton,
+.loginAnonymouslyButton {
+  background-color: darkblue;
+  font-size: 1.1em;
+}
+
+.loginoutButton:hover,
+.getStartedButton:hover,
+.backButton:hover,
+.loginAnonymouslyButton:hover {
+  background-color: #3c75f6;
+}
+
 button {
   font-size: 1em;
-  background-color: darkblue;
   color: white;
   margin: 0px;
   padding: 5px;
@@ -134,19 +148,28 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: #3c75f6;
+}
+
+.galleryRecommendationsButton {
+  background-color: #FF8C00;
+  font-size: 0.9em;
+}
+
+.galleryRecommendationsButton:hover {
+  background-color: #FFA500;
 }
 
 .discoverMoreButton {
-  background-color: #BF5700;
+  background-color: #989898;
+  font-size: 0.9em;
 }
 
 .discoverMoreButton:hover {
-  background-color: #FF8C00;
+  background-color: #A9A9A9;
 }
 
 #ratedWorksListButton {
-  background-color: #BF5700;
+  background-color: #bf5700;
 }
 
 .loginoutButton {
