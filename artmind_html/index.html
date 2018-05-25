@@ -3,6 +3,7 @@
   <head>
     <title>ArtMIND</title>
     <meta charset="utf-8">
+    <meta name="referrer" content="origin">
     <!-- https://www.w3schools.com/Css/css_rwd_viewport.asp -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/master.css">
@@ -30,7 +31,7 @@
         method : 'POST', // type of the HTTP request
         success : function(data){
           var myKey = jQuery.parseJSON(data);
-          console.log( "Firebase Key loaded" );
+          // console.log( "Firebase Key loaded" );
           // alert(myKey);
           mySuccess(myKey);
         }
@@ -50,7 +51,8 @@
           databaseURL: "https://pmahack.firebaseio.com",
           projectId: "pmahack",
           storageBucket: "pmahack.appspot.com",
-          messagingSenderId: "698243644132"
+          messagingSenderId: "698243644132",
+          referer: "lottosim.website"
         };
         firebase.initializeApp(config);
         // Get a reference to the database service
@@ -96,7 +98,7 @@
               }
             },
             function(error) {
-              console.log(error);
+              // console.log(error);
             }
           );
         };
@@ -140,7 +142,33 @@
       <p>The Philadelphia Museum of Art has a world-renowned collection, and I'm
       sure we can work together to help you discover what the collection has for
       you.</p>
-      <a href="http://www.philamuseum.org/collections/permanent/42515.html" target="_blank"><img id="homepageImage" src="./images/1929-184-34after-CX.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916"></a>
+      <p>
+        <button class="ht46 signedOut getStartedButton" type="button" name="button" id="getStartedButton">Get Started</button>
+      </p>
+      <!-- <div class="artwork2">
+        <img id="homepageImage" src="./images/1929-184-34after-CX.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916">
+        <figcaption class="artwork_recommended_title">Mending the Net</figcaption>
+        <figcaption class="artworkCaption">
+          Thomas Eakins, American, 1844 - 1916<br>
+          1881<br>
+          Oil on canvas<br>
+          <a href="http://www.philamuseum.org/floorplan/?galleryID=118&mf=floor1" target="pmaArtMap">See on Map</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="http://www.philamuseum.org/collections/permanent/42515.html" target="pmaArtMoreInfo">More Info</a>
+        </figcaption>
+      </div> -->
+      <div class="artwork2">
+        <img id="homepageImage" src="./images/E1924-4-2-pma.jpg" alt="Minding the Net, Thomas Eakins, American, 1844 - 1916">
+        <figcaption class="artwork_recommended_title">Highway of Combes-la-Ville</figcaption>
+        <figcaption class="artworkCaption">
+          Giovanni Boldini, Italian, 1842 - 1931<br>
+          1873<br>
+          Oil on canvas<br>
+          <strong><a href="http://www.philamuseum.org/floorplan/?galleryID=155&mf=floor1" target="pmaArtMap">See on Map</a></strong>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <strong><a href="http://www.philamuseum.org/collections/permanent/102975.html" target="pmaArtMoreInfo">More Info</a></strong>
+        </figcaption>
+      </div>
     </div>
     <div class="signedIn content">
       <div class="">
@@ -164,15 +192,16 @@
         <!-- https://philamuseum.org/images/cad/mediaDecks/1963-116-15-CX.jpg -->
         <!-- Two Girls -->
         <!-- Show/Hide Artwork Caption -->
-        <!-- <figcaption id="artworkCaption"></figcaption> -->
+        <!-- <figcaption class="artworkCaption" id="artworkCaption"></figcaption> -->
       </div>
       <div class="">
         <!-- <hr> -->
         <!-- <h3>Mark your preference:</h3> -->
         <p>
-          <input class="voteButton" id="downvote" type="image" title="dislike" alt="dislike" src="./images/Thumbs-Down-Picked-75px.png" />
+          <input class="voteButton" id="downvote" type="image" title="dislike" alt="dislike" src="./images/Thumbs-Down-160.png" />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <!-- <input class="voteButton voteButtonChosen" id="0vote" type="image" title="neutral" alt="neutral" src="./images/0vote.png" /> -->
-          <input class="voteButton" id="upvote" type="image" title="like" alt="like" src="./images/Thumbs-Up-Picked-75px.png" />
+          <input class="voteButton" id="upvote" type="image" title="like" alt="like" src="./images/Thumbs-Up-160.png" />
         </p>
         <!-- <p>
           <button id="artGet_previous">Previous</button>
@@ -204,37 +233,94 @@
       </div>
     </div>
     <div class="signedIn results">
-      <p>I’ve found <strong>3</strong> works I think you’ll like based on your preferences.</p>
+      <p id="recommendations_description">I’ve found <strong>10</strong> works I think you’ll like based on your preferences.</p>
       <!-- <p>Here are <strong>3</strong> personalized recommendations we think
       you’ll like based on your preferences.</p> -->
       <!-- <div class="artwork">
-        <img id="artwork_recommended" src="" alt="Artwork">
-        <figcaption id="artworkCaption_recommended"></figcaption>
+        <img class="artwork_recommended" id="artwork_recommended" src="" alt="Artwork">
+        <figcaption class="artworkCaption" id="artworkCaption_recommended"></figcaption>
       </div> -->
-
-      <div class="artwork2">
-        <img id="artwork_recommended1" src="" alt="Recommended artwork #1">
-        <figcaption id="artworkCaption_recommended1_title"></figcaption>
-        <figcaption id="artworkCaption_recommended1"></figcaption>
-      </div>
-      <br>
-      <div class="artwork2">
-        <img id="artwork_recommended2" src="" alt="Recommended artwork #2">
-        <figcaption id="artworkCaption_recommended2_title"></figcaption>
-        <figcaption id="artworkCaption_recommended2"></figcaption>
-      </div>
-      <br>
-      <div class="artwork2">
-        <img id="artwork_recommended3" src="" alt="Recommended artwork #3">
-        <figcaption id="artworkCaption_recommended3_title"></figcaption>
-        <figcaption id="artworkCaption_recommended3"></figcaption>
+      <div id="recommended">
+        <!-- TODO - fix this so these elements are added on the fly -->
+        <div class="artwork2">
+          <img class="artwork_recommended" id="artwork_recommended1" src="" alt="Recommended artwork #1">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended1_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended1"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2">
+          <img class="artwork_recommended" id="artwork_recommended2" src="" alt="Recommended artwork #2">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended2_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended2"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2">
+          <img class="artwork_recommended" id="artwork_recommended3" src="" alt="Recommended artwork #3">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended3_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended3"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended4" src="" alt="Recommended artwork #4">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended4_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended4"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended5" src="" alt="Recommended artwork #5">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended5_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended5"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended6" src="" alt="Recommended artwork #6">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended6_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended6"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended7" src="" alt="Recommended artwork #7">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended7_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended7"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended8" src="" alt="Recommended artwork #8">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended8_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended8"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended9" src="" alt="Recommended artwork #9">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended9_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended9"></figcaption>
+        </div>
+        <br>
+        <div class="artwork2 bottom7">
+          <img class="artwork_recommended" id="artwork_recommended10" src="" alt="Recommended artwork #10">
+          <figcaption class="artwork_recommended_title" id="artworkCaption_recommended10_title"></figcaption>
+          <figcaption class="artworkCaption" id="artworkCaption_recommended10"></figcaption>
+        </div>
       </div>
       <!-- <p> -->
         <!-- <button id="artGet_previous_recommended">Previous</button> -->
         <!-- <button id="artGet_next_recommended">Next Recommendation</button> -->
       <!-- </p> -->
       <p>
-        <button id="button_previousPage"><em>Back</em></button>
+        <button class="galleryRecommendationsButton" type="button" name="button" id="galleries155and161RecommendationsButton">Get recommendations for<br>Galleries 155 & 161</button>
+      </p>
+      <p>
+        <button class="discoverMoreButton" type="button" name="button" id="discoverMoreButton_animals">DISCOVER MORE<br>Animals in Artworks</button>
+      </p>
+      <p>
+        <button class="discoverMoreButton" type="button" name="button" id="discoverMoreButton_householdObjects">DISCOVER MORE<br>Household Objects</button>
+      </p>
+      <!-- TODO - make the rated works list work -->
+      <!-- <p>
+        <button type="button" name="button" id="ratedWorksListButton">View List of Rated Works</button>
+      </p> -->
+      <p>
+        <button class="backButton" id="button_previousPage">Back</button>
       </p>
     </div>
     <!-- Footer -->
@@ -242,16 +328,18 @@
       <div class="footer navcol1">
         <footer class="">
           <p>
+            <a href="https://devpost.com/software/artmind">About</a>
+            <span> | </span>
             <a href="./privacy_policy.html">Privacy Policy</a>
             <span> | </span>
-            <a href="./terms_and_conditions.html">Terms and Conditions</a>
+            <a href="./terms_and_conditions.html">Terms</a>
           </p>
         </footer>
       </div>
       <div class="footer navcol2">
         <footer class="">
           <p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNvn1P3pzb2ROT9GQBlGxhUQwnXq8Go5i-VzP9ovHmJ81i6w/viewform" target="_blank">Suggestion Box</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNvn1P3pzb2ROT9GQBlGxhUQwnXq8Go5i-VzP9ovHmJ81i6w/viewform" target="ArtMIND_suggestions">Suggestions</a>
           </p>
         </footer>
       </div>
