@@ -5255,10 +5255,16 @@ function stepThroughArtworks(steps, array, recommended) {
 // });
 
 $("#button_previousPage").click(function() {
-  $(".content").toggle();
-  $(".results").toggle();
-  ObjectID = tempObjectID;
-  // console.log("clicked.");
+  // TODO - get this working, so that the back button goes to the right place
+  // if coming from initial 10 recommendations show
+  // if () {
+    $(".content").toggle();
+    $(".results").toggle();
+    ObjectID = tempObjectID;
+  // }  else {
+  //   // if coming from one of the other sets return to original 10 recommendations
+  //   getRecommendations();
+  // }
 });
 
 $("#downvote").click(function() {

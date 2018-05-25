@@ -135,7 +135,8 @@ h3,
 .getStartedButton:hover,
 .backButton:hover,
 .loginAnonymouslyButton:hover {
-  background-color: #3c75f6;
+  background-color: #1F75FE;
+  /* background-color: #3c75f6; */
 }
 
 button {
@@ -151,17 +152,19 @@ button:hover {
 }
 
 .galleryRecommendationsButton {
-  background-color: #FF8C00;
-  font-size: 0.9em;
+  /* background-color: #FF8C00; */
+  background-color: darkblue;
+  font-size: 0.85em;
 }
 
 .galleryRecommendationsButton:hover {
-  background-color: #FFA500;
+  /* background-color: #FFA500; */
+  background-color: #1F75FE;
 }
 
 .discoverMoreButton {
   background-color: #989898;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .discoverMoreButton:hover {
