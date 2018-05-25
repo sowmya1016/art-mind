@@ -110,8 +110,8 @@ h3,
 
 .voteButton {
   background-color: transparent;
-  height: 75px;
-  width: 75px;
+  height: 90px;
+  width: 90px;
   outline: 0px solid black;
 }
 
@@ -135,6 +135,18 @@ button {
 button:hover {
   cursor: pointer;
   background-color: #3c75f6;
+}
+
+.discoverMoreButton {
+  background-color: #BF5700;
+}
+
+.discoverMoreButton:hover {
+  background-color: #FF8C00;
+}
+
+#ratedWorksListButton {
+  background-color: #BF5700;
 }
 
 .loginoutButton {
@@ -205,6 +217,9 @@ footer {
     max-width: 100%;
   }
   .voteButton {
+    outline: 0px solid white;
+  }
+  .voteButton:hover {
     outline: 0px solid white;
   }
   /* button {
