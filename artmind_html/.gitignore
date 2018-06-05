@@ -1,0 +1,43 @@
+# backup jquery files
+jquery-3.3.1.min.js
+
+# robots.txt and sitemap
+robots.txt
+sitemap.xml
+
+# privacy policy
+privacy_policy.html
+
+# terms and conditions
+terms_and_conditions.html
+
+# selected images
+Thumbs-Down-Picked-75px.png
+Thumbs-Down-Picked-75px_chosen.png
+Thumbs-Up-Picked-75px.png
+Thumbs-Up-Picked-75px_chosen.png
+1929-184-34after-CX.jpg
+Thumbs-Down-160.png
+Thumbs-Up-160.png
+Thumbs-Down-160-selected.png
+Thumbs-Up-160-selected.png
+E1924-4-2-pma.jpg
+artmind_icon.png
+artmind_icon.snag
+
+# dev files
+index2.html
+script2.js
+f_key2.php
+pma_key2.php
+index.php
+index3.html
+myKeys.json
+info.php
+index_2018-05-12-archived.html.bak
+
+# notes to self
+NOTES.txt
+
+# gitignore
+# .gitignore
