@@ -1,5 +1,5 @@
 # About this repository
-This repository contains the code for ArtMind, one of [eight (8) applications](https://philadelphiamuseum.devpost.com/submissions) and five (5) finalist applications created for the Philadelphia Museum of Art Hackathon 3.0 in April/May 2018.
+This repository contains the code for ArtMind, a web application created for the Philadelphia Museum of Art Hackathon 3.0, held April through May 2018. ArtMIND was one of [eight (8) hackathon applications](https://philadelphiamuseum.devpost.com/submissions) and one of five applications to be chosen for public presentation and final judging on May 25, 2018.
 
 # Quickstart
 Navigate to the [current dev location](https://lottosim.website/dev/artmind_html/index.html) and give it a try.
