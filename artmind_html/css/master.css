@@ -80,7 +80,7 @@ h3,
 
 .artwork_recommended_title {
   align-content: center;
-  vertical-align: middle;
+  /* vertical-align: middle; */
   display: block;
   align-items: center;
   width: auto;
@@ -119,9 +119,9 @@ h3,
   outline: 2px solid black;
 }
 
-.voteButtonChosen {
-  /* outline: 4px solid blue; */
-}
+/* .voteButtonChosen {
+  outline: 4px solid blue;
+} */
 
 .loginoutButton,
 .getStartedButton,
